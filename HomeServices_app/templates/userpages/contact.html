@@ -1,0 +1,87 @@
+{% extends "userpages/user_header_footer.html" %}
+{% block content %}
+{% load static %}
+
+    <!-- Topbar Start -->
+    
+    <!-- Navbar End -->
+
+
+   <!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5 bg-dark ">
+    <div class="container py-5">
+        <h1 class="display-3 mb-3 animated slideInDown text-white">Contact</h1>
+        <nav aria-label="breadcrumb" class="animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-white" href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-fluid bg-white px-lg-0 py-5">
+    <div class="container contact px-lg-0">
+        <div class="row g-0 mx-lg-0 shadow rounded-4 overflow-hidden">
+        
+            <!-- Contact Form -->
+            <div class="col-lg-6 contact-text bg-white py-5 px-4 wow fadeInLeft" data-wow-delay="0.3s">
+                <div class="section-title mb-4">
+                    <h1 class="display-6 fw-bold">📞 Get in Touch</h1>
+                </div>
+                <p class="mb-4 text-muted">
+                    We’d love to hear from you! Whether you have a question about services, pricing, or anything else — our team is ready to answer all your questions.
+                </p>
+                <form>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                <label for="name">Your Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                <label for="email">Your Email</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                                <label for="subject">Subject</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 120px" required></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3 rounded-pill" type="submit">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Google Map -->
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.5s" style="min-height: 400px;">
+                <div class="position-relative h-100 w-100">
+                    <iframe class="position-absolute w-100 h-100 border-0 rounded-end"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.6436829483525!2d75.7086846148856!3d23.45336818473554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3963b0eb3cce9a15%3A0x9e6d688bb250ef5c!2sMandsaur%2C%20Madhya%20Pradesh%20458001!5e0!3m2!1sen!2sin!4v1713615988766!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+
+    <!-- Footer Start -->
+    {% endblock %}

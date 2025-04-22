@@ -1,0 +1,575 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Home-2-Home</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<!-- Owl Carousel Core CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<!-- Theme (optional) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
+    <!-- Favicon -->
+    <link href="{% static 'user_assets/img/favicon.ico ' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'user_assets/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'user_assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'user_assets/css/style.css' %}" rel="stylesheet">
+    <style>
+        /* Navbar Base */
+        .navbar.custom-navbar {
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Nav Links */
+        .navbar-nav .nav-link {
+            color: #4A4A4A;
+            font-weight: 500;
+            padding: 12px 18px;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            margin-right: 5px;
+        }
+
+        /* Active Link */
+        .navbar-nav .nav-link.active {
+            background-color: #009587;
+            color: #ffffff !important;
+        }
+
+        /* Hover Effect */
+        .navbar-nav .nav-link:hover {
+            background-color: #009587;
+            color: #ffffff;
+        }
+
+        /* User Dropdown Button */
+        .btn.dropdown-toggle {
+            background-color: #009587;
+            color: #ffffff;
+            font-weight: 500;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .btn.dropdown-toggle:hover {
+            background-color: #007e72;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            background-color: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Dropdown Items */
+        .dropdown-menu .dropdown-item {
+            color: #4A4A4A;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #009587;
+            color: #ffffff;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+
+        .text-white {
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #009587;
+            border-color: #009587;
+        }
+
+        .btn-primary:hover {
+            background-color: #007b6e;
+            border-color: #007b6e;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #009587;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #009587;
+        }
+
+        body {
+            color: #4A4A4A;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .explore-btn {
+  background-color: #009587;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.explore-btn:hover {
+  background-color: #00796b;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 149, 135, 0.2);
+}
+.service-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.read-more-btn {
+    color: #009587;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 16px;
+    border: 2px solid #009587;
+    border-radius: 30px;
+}
+
+.read-more-btn:hover {
+    background-color: #009587;
+    color: #fff;
+}
+
+.read-more-btn i {
+    transition: transform 0.3s ease;
+}
+
+.read-more-btn:hover i {
+    transform: translateX(5px);
+}
+.text-teal {
+    color: #009587;
+}
+
+.feature-box {
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 149, 135, 0.15);
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background-color: #e8f7f5;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.feature-box:hover .icon-box {
+    background-color: #009587;
+}
+
+.feature-box:hover .icon-box i {
+    color: #fff;
+}
+
+/* Background Image Styling */
+.bg-feature-image {
+    background-image: url("{% static 'user_assets/img/feature.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;  /* Ensure height is 100% */
+    min-height: 400px;  /* Make sure it stays visible at the minimum height */
+    width: 100%;
+}
+
+.testimonial-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%; /* Ensure images are round */
+    object-fit: cover; /* Prevent image stretching */
+}
+
+.testimonial-text {
+    background-color: #f8f9fa; /* Light background for testimonial text */
+    border-radius: 8px;
+}
+
+.owl-carousel .owl-nav, .owl-carousel .owl-dots {
+    display: none; /* Optional: Hide the navigation dots and arrows if you don’t need them */
+}
+
+/* Optional: Add some margin and padding to the carousel for better visuals */
+.owl-carousel {
+    margin-top: 20px;
+}
+/* Social Media Icon Buttons */
+.footer .btn-social {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: #009587; /* Icon color */
+    border: 1px solid #009587; /* Border color same as icon */
+    margin-right: 10px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer .btn-social:hover {
+    background-color: #009587;
+    color: #fff; /* White icon on hover */
+}
+
+/* Newsletter Input */
+.footer .form-control {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #009587; /* Border color matches icon */
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.footer .form-control::placeholder {
+    color: #009587;
+}
+
+/* Submit Button */
+.footer .btn-primary {
+    background-color: #009587;
+    border: 1px solid #009587;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.footer .btn-primary:hover {
+    background-color: #007f6a;
+}
+
+/* Font Awesome Icon Color (For address, phone, email) */
+.footer i.fa {
+    color: #009587;
+    margin-right: 10px;
+}
+.text-teal {
+    color: #009587;
+}
+
+.border-teal {
+    border: 2px solid #009587;
+    border-radius: 10px;
+}
+
+.btn-submit {
+    background-color: #009587;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #00796b;
+    transform: scale(1.05);
+}
+
+.card {
+    animation: fadeInUp 0.8s ease;
+}
+
+/* Optional Animate.css keyframe if you're not using the library */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-map-marker-alt me-2" style="color: #009587;"></small>
+                    <small style="color: #4A4A4A;">123, Mandsaur, Madhya Pradesh, India</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <small class="far fa-clock me-2" style="color: #009587;"></small>
+                    <small style="color: #4A4A4A;">Mon - Fri : 09.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-phone-alt me-2" style="color: #009587;"></small>
+                    <small style="color: #4A4A4A;">+91 9876543210</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <a class="btn btn-sm-square bg-white me-1" href=""><i class="fab fa-facebook-f" style="color: #009587;"></i></a>
+                    <a class="btn btn-sm-square bg-white me-1" href=""><i class="fab fa-twitter" style="color: #009587;"></i></a>
+                    <a class="btn btn-sm-square bg-white me-1" href=""><i class="fab fa-linkedin-in" style="color: #009587;"></i></a>
+                    <a class="btn btn-sm-square bg-white me-0" href=""><i class="fab fa-instagram" style="color: #009587;"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg custom-navbar  shadow-sm">
+
+        <div class="container-fluid">
+            <a href="{% url 'index' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                <h2 class="m-0 text-black">Home2Home</h2>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-3 ms-auto p-5 p-lg-0">
+                    <!-- Highlight "Home" link if on the homepage -->
+                    <a href="{% url 'index' %}"
+                        class="nav-item nav-link {% if request.path == '/index/' %}active{% endif %}">Home</a>
+                    <a href="{% url 'about' %}"
+                        class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">About</a>
+                    <a href="{% url 'services' %}"
+                        class="nav-item nav-link {% if request.path == '/services/' %}active{% endif %}">Service</a>
+                    <a href="{% url 'feedback_form' %}"
+                        class="nav-item nav-link {% if request.path == '/feedback_form/' %}active{% endif %}">Give
+                        Feedback</a>
+                    <a href="{% url 'contact' %}"
+                        class="nav-item nav-link {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
+                </div>
+
+                <!-- Dropdown Menu for User -->
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ request.user }} <i class="fa fa-user ms-3"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="{% url 'userprofile' %}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Viewappointment_history' %}">Appointments</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Navbar End -->
+    {% block content %}
+
+    {% endblock %}
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s" data-aos="fade-up">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6" data-aos="fade-right">
+                <h4 class="text-light mb-4">Address</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123, Mandsaur, Madhya Pradesh, India</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 98765 43210</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>Home2home@gmail.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-left">
+                <h4 class="text-light mb-4">Services</h4>
+                <a class="btn btn-link text-light" href="">General Carpentry</a>
+                <a class="btn btn-link text-light" href="">Home Cleaning</a>
+                <a class="btn btn-link text-light" href="">Office Cleaning</a>
+                <a class="btn btn-link text-light" href="">House Painting</a>
+                <a class="btn btn-link text-light" href="">Electrician</a>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                <h4 class="text-light mb-4">Quick Links</h4>
+                <a class="btn btn-link text-light" href="{% url 'about' %}">About Us</a>
+                <a class="btn btn-link text-light" href="{% url 'contact' %}">Contact Us</a>
+                <a class="btn btn-link text-light" href="{% url 'services' %}">Our Services</a>
+                <a class="btn btn-link text-light" href="">Terms & Condition</a>
+                <a class="btn btn-link text-light" href="">Support</a>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                <h4 class="text-light mb-4">Newsletter</h4>
+                <p></p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom text-light" href="#">RGBCare</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    Designed By Guru Developer 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'user_assets/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'user_assets/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'user_assets/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'user_assets/lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'user_assets/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'user_assets/lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'user_assets/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'user_assets/js/main.js' %}"></script>
+
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            effect: "slide",
+        });
+    </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    offset: 150,
+    easing: 'ease-in-out', // Easing function for animation
+  once: true, // Whether the animation should only happen once
+  mirror: false // Whether to animate elements when scrolling back
+  });
+</script>
+<script>
+    $(document).ready(function(){
+        $('.testimonial-carousel').owlCarousel({
+  loop: true,
+  margin: 30,
+  nav: false,
+  dots: true,
+  autoplay: true,
+  responsive: {
+    0: { items: 1 },
+    768: { items: 2 },
+    992: { items: 3 }
+  }
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

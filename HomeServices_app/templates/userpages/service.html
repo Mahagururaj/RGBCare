@@ -1,0 +1,78 @@
+{% extends "userpages/user_header_footer.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Page Header -->
+<div class="container-fluid service-page-header py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Service</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-white" href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Service</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1 class="display-5 mb-5 text-dark">Our Services</h1>
+        </div>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.{{ forloop.counter0 }}s">
+                <div class="service-item shadow-lg rounded-4 overflow-hidden bg-white transition">
+                    <div class="service-img overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ service.img.url }}" alt="{{ service.Name }}" style="height: 230px; object-fit: cover;">
+                    </div>
+                    <div class="p-4 text-center border-top service-content">
+                        <h4 class="mb-3 text-teal">{{ service.Name }}</h4>
+                        <p class="text-muted small">{{ service.Description|truncatewords_html:20 }}</p>
+                        <a class="read-more-btn text-teal fw-medium" href="{% url 'bookservice' id=service.id %}">
+                            Book Now <i class="fa fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No services available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+<!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1 class="display-5 mb-5">Feedbacks</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel">
+            {% for feedback in feedbacks %}
+            <div class="testimonial-item text-center">
+              {% if feedback.user.profile_pic %}
+              <img src="{{ feedback.user.profile_pic.url }}" alt="Profile Picture" class="img-fluid bg-light p-2 mx-auto mb-3" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+          {% else %}
+              <img src="{% static 'user_assets/img/default_user_icon.jpg' %}" alt="Default User Icon" class="img-fluid bg-light p-2 mx-auto mb-3" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+          {% endif %}
+            
+                <div class="testimonial-text text-center p-4">
+                    <p>{{ feedback.description }}</p>
+                    <h5 class="mb-1">{{ feedback.user }}</h5>
+                    <span class="fst-italic">{{ feedback.employee.designation }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+  <!-- Testimonial End -->
+    
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "userpages/user_header_footer.html" %}
+{% block content %}
+{% load static %}
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5 bg-dark">
+    <div class="container py-5 text-white">
+      <h1 class="display-3 mb-3 animated text-white slideInDown">Feedback</h1>
+      <nav aria-label="breadcrumb" class="animated slideInDown">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a class="text-white text-decoration-none" href="{% url 'index' %}">Home</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">Feedback</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- Page Header End -->
+  
+<!-- Feedback Section Start -->
+<div class="container-fluid bg-white px-lg-0 py-5">
+    <div class="container contact px-lg-0">
+        <div class="row g-0 mx-lg-0 shadow rounded-4 overflow-hidden min-vh-100">
+
+            <!-- Left Side: Image -->
+            <div class="col-lg-6 wow fadeInLeft d-none d-lg-block" data-wow-delay="0.3s" style="min-height: 400px;">
+                <div class="position-relative h-100 w-100">
+                    <img src="{% static 'user_assets/img/feedback.jpg' %}" alt="Feedback Image"
+                         class="position-absolute w-100 h-100 object-fit-cover rounded-start">
+                </div>
+            </div>
+
+            <!-- Right Side: Feedback Form -->
+            <div class="col-lg-6 bg-white py-5 px-4 wow fadeInRight d-flex align-items-center" data-wow-delay="0.5s">
+                <div class="w-100" style="max-width: 500px; margin: auto;">
+                    <div class="section-title mb-4">
+                        <h1 class="display-6 fw-bold">🌟Feedback</h1>
+                    </div>
+                    <p class="mb-4 text-muted">
+                        Share your thoughts about our service or team. Your feedback helps us improve!
+                    </p>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+
+                            <!-- Employee Dropdown -->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <select class="form-select" id="employ" name="employ" required>
+                                        <option value="" disabled selected>-- Choose an Employee --</option>
+                                        {% for worker in workers %}
+                                            <option value="{{ worker.id }}">{{ worker.admin.first_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="employ">Select Employee</label>
+                                </div>
+                            </div>
+
+                            <!-- Rating -->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="rating" name="rating" min="0" max="5" placeholder="Rating" required>
+                                    <label for="rating">Rating (0–5)</label>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Write your feedback here..." id="description" name="description" style="height: 120px;" required></textarea>
+                                    <label for="description">Feedback Description</label>
+                                </div>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3 rounded-pill" type="submit">Submit Feedback</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Feedback Section End -->
+
+
+<!-- Include Bootstrap JS -->
+{% endblock %}

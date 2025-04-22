@@ -1,0 +1,84 @@
+{% extends "userpages/user_header_footer.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .status-badge {
+        background-color: #007e72;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+{% if messages %}
+  <div class="container mb-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="container mt-5 mb-5">
+    <h2 class="mb-4 text-center" style="color: #007e72;">Appointment History</h2>
+
+    <!-- Request Data Section -->
+    <h4 class="mb-3" style="color: #007e72;">Service Requests</h4>
+    {% if requests %}
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for request_data in requests %}
+            <div class="col">
+                <div class="card shadow-sm border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">
+                            {{ request_data.service.Name }}
+                        </h5>
+                        <p class="mb-1"><strong>Requested On:</strong> {{ request_data.dateofrequest|date:"Y-m-d" }}</p>
+                        <p class="mb-1"><strong>User:</strong> {{ request_data.user.admin.first_name }}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="status-badge">Status: Action Needed</span>
+                            <a class="btn btn-sm btn-danger" href="{% url 'CancelRequest' request_data.id %}">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">No service requests found.</p>
+    {% endif %}
+
+    <!-- Response Data Section -->
+    <h4 class="mt-5 mb-3" style="color: #007e72;">Worker Responses</h4>
+    {% if responses %}
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for response in responses %}
+            <div class="col">
+                <div class="card shadow-sm border-success">
+                    <div class="card-body">
+                        <h5 class="card-title text-success">
+                            {{ response.requests.service.Name }}
+                        </h5>
+                        <p class="mb-1"><strong>Requested On:</strong> {{ response.requests.dateofrequest|date:"Y-m-d" }}</p>
+                        <p class="mb-1"><strong>Assigned On:</strong> {{ response.Date|date:"Y-m-d" }}</p>
+                        <p class="mb-1"><strong>Assigned Worker:</strong> {{ response.assigned_worker.admin.first_name }}</p>
+                        <p class="mb-1"><strong>User:</strong> {{ response.requests.user.admin.first_name }}</p>
+                        <div class="mt-3">
+                            {% if response.status %}
+                                <span class="status-badge">Completed</span>
+                            {% else %}
+                                <span class="status-badge">Pending</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">No responses found.</p>
+    {% endif %}
+</div>
+{% endblock %}
