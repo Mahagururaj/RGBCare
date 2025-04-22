@@ -14,11 +14,11 @@ import os
 
 from pathlib import Path
 import dj_database_url
-from decouple import Config, Csv
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-config = Config()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
