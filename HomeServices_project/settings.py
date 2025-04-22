@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-<<<<<<< HEAD
 
 from pathlib import Path
 import dj_database_url
@@ -19,15 +18,6 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-=======
-import dj_database_url
-
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
->>>>>>> origin/master
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -36,16 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-p@o12h+fw!7=k6#l8o@6raux@y!g1u024bej^dd0%w!2$b@pn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-<<<<<<< HEAD
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-=======
-DEBUG = False
-
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1 localhost").split(" ")
->>>>>>> origin/master
 
 # Application definition
 
@@ -93,7 +77,6 @@ WSGI_APPLICATION = 'HomeServices_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-<<<<<<< HEAD
 import os
 import dj_database_url
 
@@ -105,8 +88,6 @@ DATABASES = {
     )
 }
 
-=======
->>>>>>> origin/master
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -121,15 +102,7 @@ DATABASES = {
 #             "init_command": "SET foreign_key_checks = 0;",
 #         },
 #     }
-<<<<<<< HEAD
 # }
-=======
-#  }
-DATABASES = {
-    "default": dj_database_url.parse("postgresql://testdb_v3th_user:lI7IeTVaqKuo95QebqiCrDtlF2VBBJc3@dpg-d00ha8ngi27c73b9vkng-a.oregon-postgres.render.com/testdb_v3th")
-}
-
->>>>>>> origin/master
 
 
 # Password validation
@@ -169,16 +142,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-=======
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
->>>>>>> origin/master
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
