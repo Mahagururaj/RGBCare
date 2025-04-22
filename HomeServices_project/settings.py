@@ -29,9 +29,10 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS').split()
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', default='127.0.0.1').split()
+
 
 
 # Application definition
