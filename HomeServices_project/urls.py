@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
+=======
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+>>>>>>> origin/master
 
 from HomeServices_project import settings
 
@@ -24,7 +28,13 @@ urlpatterns = [
     path('', include('HomeServices_app.urls')),
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+<<<<<<< HEAD
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # For static files
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    # For media files
+=======
+# urlpatterns += staticfiles_urlpatterns()
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> origin/master
