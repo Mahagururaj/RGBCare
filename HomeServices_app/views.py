@@ -14,7 +14,10 @@ from django.views import View
 from django.db import transaction
 from .models import Response, State, workers, users, ServiceCatogarys, Country, City, Feedback, ServiceRequests
 from .forms import stateform
+from django.http import HttpResponse
 
+def home(request):
+    return HttpResponse("Welcome to RGBCare!")
 
 class Commenlib:
     def __init__(self):

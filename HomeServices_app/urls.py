@@ -1,7 +1,7 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
+from django.views.generic import RedirectView
 from HomeServices_app import views
 from HomeServices_project import settings
 from django.contrib.auth.views import (
@@ -14,7 +14,7 @@ from django.contrib.auth.views import (
 
 urlpatterns = [
 
-
+    path('favicon.ico', RedirectView.as_view(url='/static/user_assets/favicon.ico', permanent=True)),
     path('', views.Login.as_view(), name='login'),
     path('logout', views.logout_view, name='logout'),
     path('user_registration/', views.User_Register.as_view(), name='user_registration'),
