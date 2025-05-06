@@ -15,11 +15,12 @@ from django.contrib.auth.views import (
 urlpatterns = [
 
     path('favicon.ico', RedirectView.as_view(url='/static/user_assets/favicon.ico', permanent=True)),
-    path('', views.Login.as_view(), name='login'),
+    path('', views.HomeView.as_view(), name='home'),  # Root route (http://127.0.0.1:8000/)
+    path('home/', views.home.as_view(), name='index'),  
+    path('login/', views.Login.as_view(), name='login'),
     path('logout', views.logout_view, name='logout'),
     path('user_registration/', views.User_Register.as_view(), name='user_registration'),
     path('Worker_Register/', views.Worker_Register.as_view(), name='Worker_Register'),
-    path('index/', views.home.as_view(), name='index'),
     path('about/',views.about.as_view(),name='about'),
     path('services/',views.services.as_view(),name='services'),
     path('contact/',views.contact.as_view(),name='contact'),

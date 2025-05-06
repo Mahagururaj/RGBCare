@@ -1,160 +1,338 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-     <style>
-        body {
-            background-color: #f7f7f7;
-            background-image: url('https://example.com/path/to/your/image.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worker Registration</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #26a69a, #00796b);
+    overflow-x: hidden;
+  }
+  
+  .container {
+    position: relative;
+    width: 550px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+    padding: 50px 40px;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .container h1 {
+    font-size: 30px;
+    margin-bottom: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  input, select, textarea {
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+  
+  input::placeholder, textarea::placeholder {
+    color: #ddd;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid #fff;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+  select.form-control {
+      appearance: none;
+      background-color: rgba(255,255,255,0.18);
+      padding-right: 48px;
+      background-image:
+        linear-gradient(45deg, transparent 50%, white 50%),
+        linear-gradient(135deg, white 50%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+      background-position:
+        calc(100% - 20px) calc(50% - 7px),
+        calc(100% - 15px) calc(50% - 7px),
+        0 0;
+      background-size: 8px 8px, 8px 8px, 100% 100%;
+      background-repeat: no-repeat;
+      text-indent: 0.01px;
+      text-overflow: '';
+      color: #fff;
+    }
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    select.form-control option {
+      background-color: #2b978c;
+      color: #fff;
+    }
 
-        h1 {
-            color: #4285f4;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+  
+  .file-input-wrapper {
+    position: relative;
+  }
+  
+  .file-input-wrapper input[type=file] {
+    width: 100%;
+    height: 50px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  .file-input-label {
+    display: block;
+    width: 100%;
+    height: 50px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 30px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 15px;
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .password-container {
+  position: relative;
+  width: 100%;
+}
 
-        label {
-            color: #555555;
-            font-weight: bold;
-        }
+.password-container input {
+  width: 100%;
+  padding-right: 45px;
+}
 
-        .form-control {
-            border-color: #cccccc;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label,
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            transition: all 0.3s ease-in-out;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: #4285f4;
-            box-shadow: 0 0 0 0.2rem rgba(66, 133, 244, 0.25);
-        }
-
-        .btn-primary {
-            background-color: #4285f4;
-            border-color: #4285f4;
-        }
-
-        .btn-primary:hover {
-            background-color: #357ae8;
-            border-color: #357ae8;
-        }
-    </style>
-    <title>Worker Registration Form</title>
+.password-container i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  z-index: 2;
+}
+  
+  .file-input-label:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.02);
+  }
+  
+  .img-preview {
+    display: none;
+    width: 95px;
+    height: 95px;
+    margin: 12px auto 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent;
+    background: linear-gradient(135deg, #00bfa5, #00796b) border-box;
+    padding: 3px;
+  }
+  
+  .btn-submit {
+    position: relative;
+    display: inline-block;
+    padding: 16px 0;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.4s ease;
+  }
+  
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #00796b;
+    transition: left 0.4s ease-in-out;
+    z-index: -1;
+  }
+  
+  .btn-submit:hover {
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  
+  .btn-submit:hover::before {
+    left: 0;
+  }
+  
+  .footer-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .footer-text a {
+    color: #00d5ff;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+  }
+  
+  .shape.one { width: 130px; height: 130px; top: 10%; left: 12%; }
+  .shape.two { width: 200px; height: 200px; top: 75%; left: 80%; }
+  .shape.three { width: 160px; height: 160px; top: 45%; left: 55%; }
+  
+  ::selection {
+    background: #004d40;
+    color: #fff;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+</style>  
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Worker Registration Form</h1>
-        {{msg}}
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="firstname">First Name:</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="lastname">Last Name:</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" required>
-                </div>
-            </div>
-             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
 
-                <div class="form-group col-md-6">
-                    <label for="contactnumber">Contact Number:</label>
-                    <input type="tel" class="form-control" id="contactnumber" name="contactnumber" required>
-                </div>
-             </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="dob">Date of Birth:</label>
-                <input type="date" class="form-control" id="dob" name="dob" required>
-            </div>
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+    <div class="shape three"></div>
+
+  <div class="container">
+    <h1>Worker Registration</h1>
+    {{msg}}
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <input type="text" name="firstname" placeholder="First Name" required>
+      <input type="text" name="lastname" placeholder="Last Name" required>
+      <img id="imgPreview" class="img-preview" src="#" />
+      <div class="file-input-wrapper">
+        <label class="file-input-label">Upload Profile Picture</label>
+        <input type="file" name="profile_pic" accept="image/*" onchange="previewImg(event)" required>
+      </div>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="contactnumber" placeholder="Contact Number" required>
+      <input type="date" name="dob" required>
+
+      <select class="form-control" name="gender" required>
+        <option disabled selected>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <input type="text" name="city" placeholder="City" required>
+      <textarea name="address" rows="2" placeholder="Address" required></textarea>
+
+      <select class="form-control" name="designation" required>
+        <option disabled selected>Select Designation</option>
+        {% for cc in designations %}
+        <option value="{{cc.Name}}">{{cc.Name}}</option>
+        {% endfor %}
+        <option value="Other">Other</option>
+      </select>
+
+      <div class="password-container">
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        <i id="togglePwd" class="fas fa-eye"></i>
+      </div>
+
+      <div class="password-container">
+        <input type="password" id="cpassword" name="cpassword" class="form-control" placeholder="Confirm Password" required>
+        <i id="toggleCpwd" class="fas fa-eye"></i>
+      </div>
 
 
+      <button class="btn-submit" type="submit">Register</button>
 
+    </form>
 
-
-            <div class="form-group col-md-6" >
-                <label for="gender">Gender:</label><br>
-                <select id="gender" class="form-control" name="gender" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-        </div>
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="city" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
-            </div>
-          
-
-            <div class="form-group">
-                <label>Designation:</label><br>
-                <select  class="form-control" name="designation"  id="designation" required>
-                    <option >Select Designation</option>
-					{% for cc in designations %}
-                    <option value='{{cc.Name}}'>{{cc.Name}}</option>
-					{% endfor %}
-                    <option value="Other">Other</option>
-
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="profile_pic">Profile Picture:</label>
-                <input type="file" class="form-control" id="profile_pic" name="profile_pic" required>
-            </div>
-             <div class="form-group col-md-6">
-                <label for="password">Set Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="cpassword">Confirm Password :</label>
-                <input type="password" class="form-control" id="cpassword" name="cpassword" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <span>Already Have accout ? <a href="{% url 'login' %}">Login</a></span>
-
+    <div class="footer-text">
+      Already have an account? <a href="{% url 'login' %}">Login</a>
     </div>
+  </div>
+  <script>
+    gsap.from("#loginBox", { opacity: 0, y: -80, duration: 1.2, ease: "power3.out" });
 
-    <!-- Add Bootstrap JS and jQuery (required for Bootstrap JS) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    const shapes = document.querySelectorAll('.shape');
+    document.addEventListener('mousemove', e => {
+      const { clientX:x, clientY:y } = e;
+      shapes.forEach((shape, i) => {
+        const factor = (i+1) * 25;
+        shape.style.transform = `translate(${(x - window.innerWidth/2) / factor}px, ${(y - window.innerHeight/2) / factor}px)`;
+      });
+    });
+
+    function previewImg(e){
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = document.getElementById('imgPreview');
+        img.src = reader.result;
+        img.style.display = 'block';
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    function setupToggle(btnId, inputId){
+      const btn = document.getElementById(btnId),
+            inp = document.getElementById(inputId);
+      btn.addEventListener('click', () => {
+        inp.type = inp.type === 'password' ? 'text' : 'password';
+        btn.classList.toggle('fa-eye-slash');
+      });
+    }
+    setupToggle('togglePwd','password');
+    setupToggle('toggleCpwd','cpassword');
+  </script>
+
 </body>
 </html>

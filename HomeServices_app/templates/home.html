@@ -1,0 +1,504 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RGBCare</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+     .swiper {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+}
+
+.swiper-slide {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.slide-content h2 {
+  color: #48A6A7;
+  font-size: 48px; /* Increased size */
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.slide-content p {
+  font-size: 24px; /* Increased size */
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+
+.btn {
+  margin: 5px;
+  background-color: #009587;
+  color: #fff;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  background-color: #00776a;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #009587;
+}
+
+.swiper-pagination-bullet {
+  background: #009587;
+}
+/* Footer styles */
+/* Footer Base */
+.footer {
+  background-color: #262626;
+  color: #f1f1f1;
+  padding: 50px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Footer Grid Layout */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Sections */
+.footer-section {
+  flex: 1 1 220px;
+  margin: 20px;
+}
+
+.footer-heading {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  border-bottom: 2px solid #009587;
+  padding-bottom: 5px;
+}
+
+/* Text and Links */
+.footer-section p,
+.footer-section li {
+  margin: 10px 0;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #009587;
+}
+
+/* Social Icons */
+.footer-social a {
+  display: inline-block;
+  color: #f1f1f1;
+  margin: 0 8px;
+  font-size: 18px;
+}
+
+.footer-social a:hover {
+  color: #009587;
+}
+
+/* Newsletter Form */
+.footer-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section input[type="email"] {
+  padding: 10px;
+  border: none;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.footer-section button {
+  padding: 10px;
+  background-color: #009587;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.footer-section button:hover {
+  background-color: #007e6d;
+}
+
+/* Bottom Strip */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #444;
+  padding: 15px 0 0;
+  margin-top: 30px;
+  color: #ccc;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+
+  </style>
+
+  <body class="bg-gray-50 font-['Roboto'] text-gray-700">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between p-6 bg-white shadow-md">
+      <h1 class="text-3xl font-extrabold text-teal-700">RGBCare</h1>
+  
+      <nav class="space-x-6 flex items-center">
+        <a href="#" class="hover:text-teal-600 transition">Home</a>
+        <a href="#" class="hover:text-teal-600 protected-link transition">Services</a>
+        <a href="#" class="hover:text-teal-600 protected-link transition">Benefits</a>
+        <a href="#" class="hover:text-teal-600 protected-link transition">About</a>
+        <a href="#" class="hover:text-teal-600 protected-link transition">Contact</a>
+  
+        <a href="{% url 'login' %}" class="bg-teal-600 text-white py-2 px-4 rounded-full shadow hover:bg-teal-700 transition">
+          User Login
+        </a>
+  
+        <!-- Registration Dropdown -->
+        <div class="relative group">
+          <button class="bg-teal-600 text-white py-2 px-4 rounded-full shadow hover:bg-teal-700 transition">
+            Register
+          </button>
+          <div class="absolute right-0 mt-2 w-52 bg-white shadow-lg rounded-lg hidden group-hover:block z-20">
+            <a href="{% url 'user_registration' %}" class="block py-3 px-4 hover:bg-teal-50 text-teal-700">User Registration</a>
+            <a href="{% url 'Worker_Register' %}" class="block py-3 px-4 hover:bg-teal-50 text-teal-700">Worker Registration</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+  
+    <!-- Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm">
+        <h2 class="text-2xl font-bold text-teal-700 mb-4">Please Sign Up</h2>
+        <p class="text-gray-600 mb-6">You need to sign up or log in to access this section.</p>
+        <div class="flex justify-center gap-4">
+          <a href="{% url 'login' %}" class="bg-teal-600 text-white py-2 px-4 rounded hover:bg-teal-700 transition">Sign Up</a>
+          <button onclick="closeModal()" class="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400 transition">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+<!-- Swiper Container -->
+<div class="swiper myNewSwiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <img src= "{% static 'user_assets/img/slider2.jpg' %}" alt="Slide 1" class="img-fluid">
+        <div class="slide-content">
+          <h2>Welcome To RGBCare</h2>
+          <p>Ghar Ka Saathi, Har Musibat Mein Saath</p>
+          <a href="#" class="btn btn-light protected-link">Our Services</a>
+        </div>
+      </div>
+  
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <img src="{% static 'user_assets/img/slider3.jpg' %}"  alt="Slide 2" class="img-fluid">
+        <div class="slide-content">
+          <h2>Home Help, Hassle Free</h2>
+          <p>Electrician ho ya plumber, kaam kare bina tension.</p>
+          <a href="#" class="btn btn-primary protected-link">Read More</a>
+        </div>
+      </div>
+  
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <img src="{% static 'user_assets/img/slider4.jpg' %}"  alt="Slide 3" class="img-fluid">
+        <div class="slide-content">
+          <h2>Professional & Polite</h2>
+          <p>RGBCare se judo, zindagi banao breezy.</p>
+          <a href="#" class="btn btn-primary protected-link">Book Now</a>
+        </div>
+      </div>
+  
+      <!-- Slide 4 -->
+      <div class="swiper-slide">
+        <img src="{% static 'user_assets/img/slider5.jpg' %}"  alt="Slide 4" class="img-fluid">
+        <div class="slide-content">
+          <h2>Service Partner</h2>
+          <p>Sahi kaam, sahi samay par.</p>
+          <a href="#" class="btn btn-primary protected-link">Read More</a>
+        </div>
+      </div>
+  
+      <!-- Slide 5 -->
+      <div class="swiper-slide">
+        <img src="{% static 'user_assets/img/slider6.jpg' %}"  alt="Slide 5" class="img-fluid">
+        <div class="slide-content">
+          <h2>India’s Trusted Services</h2>
+          <p>Ek click, kaam ho gaya bina jhanjhat ke.</p>
+          <a href="#" class="btn btn-primary protected-link">Our Services</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Navigation Buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+  
+  
+
+  
+    
+     <!-- Services Section -->
+<section id="services" class="py-20 bg-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-teal-700 mb-12">Our Services</h2>
+      <div class="grid gap-10 md:grid-cols-3">
+  
+        <!-- Service Card -->
+        <div class="group bg-teal-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300  protected-link">
+          <img src="{% static 'user_assets/img/electrician.jpg' %}" alt="Electrician"
+            class="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-teal-100 group-hover:scale-105 transition duration-300"
+            loading="lazy">
+          <h3 class="text-2xl font-semibold text-teal-800 mb-3">Electrician</h3>
+          <p class="text-gray-600 mb-6">Fix wiring, lights, and appliances with our certified electricians.</p>
+          <a href=""
+            class="inline-block bg-teal-600 text-white py-2 px-6 rounded-full font-semibold shadow hover:bg-teal-700 transition">Book
+            Now</a>
+        </div>
+  
+        <!-- Service Card -->
+        <div class="group bg-teal-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300  protected-link">
+          <img src="{% static 'user_assets/img/plumber.jpg' %}" alt="Plumber"
+            class="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-teal-100 group-hover:scale-105 transition duration-300"
+            loading="lazy">
+          <h3 class="text-2xl font-semibold text-teal-800 mb-3">Plumber</h3>
+          <p class="text-gray-600 mb-6">Expert plumbing services for leakages, fittings, and installations.</p>
+          <a href=""
+            class="inline-block bg-teal-600 text-white py-2 px-6 rounded-full font-semibold shadow hover:bg-teal-700 transition">Book
+            Now</a>
+        </div>
+  
+        <!-- Service Card -->
+        <div class="group bg-teal-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300  protected-link">
+          <img src="{% static 'user_assets/img/cleaning.jpg' %}" alt="Home Cleaning"
+            class="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-teal-100 group-hover:scale-105 transition duration-300"
+            loading="lazy">
+          <h3 class="text-2xl font-semibold text-teal-800 mb-3">Home Cleaning</h3>
+          <p class="text-gray-600 mb-6">Freshen up your home and office with our professional cleaners.</p>
+          <a href=""
+            class="inline-block bg-teal-600 text-white py-2 px-6 rounded-full font-semibold shadow hover:bg-teal-700 transition">Book
+            Now</a>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+  
+    <!-- Benefits -->
+    <section id="benefits" class="py-20 bg-teal-50">
+      <div class="container mx-auto px-6">
+        <div class="mb-12 text-center">
+          <h3 class="text-3xl font-bold text-teal-700 mb-4">Why Choose RGBCare?</h3>
+        </div>
+  
+        <div class="grid md:grid-cols-2 gap-12">
+  
+          <div>
+            <h4 class="text-2xl font-semibold text-teal-700 mb-4">For Users</h4>
+            <ul class="space-y-4 text-lg text-gray-700">
+              <li><strong>✔ Verified Professionals:</strong> All workers are background-checked and certified.</li>
+              <li><strong>✔ Affordable Pricing:</strong> Top-quality services at fair rates.</li>
+              <li><strong>✔ 24x7 Emergency Support:</strong> Always available for your needs.</li>
+              <li><strong>✔ Convenient Booking:</strong> Quick, easy service booking and tracking.</li>
+              <li><strong>✔ Reliable & Timely:</strong> On-time, professional service every visit.</li>
+            </ul>
+          </div>
+  
+          <div>
+            <h4 class="text-2xl font-semibold text-teal-700 mb-4">For Workers</h4>
+            <ul class="space-y-4 text-lg text-gray-700">
+              <li><strong>✔ Flexible Hours:</strong> Choose your availability, work on your terms.</li>
+              <li><strong>✔ Steady Income:</strong> Consistent earnings with a variety of jobs.</li>
+              <li><strong>✔ Skill Development:</strong> Learn, grow, and expand your expertise.</li>
+              <li><strong>✔ Prompt Payments:</strong> Guaranteed timely and secure payments.</li>
+              <li><strong>✔ Better Work-Life Balance:</strong> Control over your schedule.</li>
+            </ul>
+          </div>
+  
+        </div>
+      </div>
+    </section>
+  
+   <!-- Footer Start -->
+   <footer class="footer">
+    <div class="footer-container">
+      
+      <div class="footer-section address-section">
+        <h3 class="footer-heading">Address</h3>
+        <p class="footer-address">
+          <i class="footer-icon location-icon"></i> 123, Mandsaur, Madhya Pradesh, India
+        </p>
+        <p class="footer-contact">
+          <i class="footer-icon phone-icon"></i> +91 98765 43210
+        </p>
+        <p class="footer-email">
+          <i class="footer-icon email-icon"></i> Home2home@gmail.com
+        </p>
+        <div class="footer-social-icons">
+          <a href="#" class="social-icon protected-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon protected-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon protected-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon protected-link"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+  
+      <div class="footer-section services-section">
+        <h3 class="footer-heading ">Services</h3>
+        <ul class="footer-links ">
+          <li><a  class="protected-link" href="#">General Carpentry</a></li>
+          <li><a class="protected-link" href="#">Home Cleaning</a></li>
+          <li><a  class="protected-link" href="#">Office Cleaning</a></li>
+          <li><a  class="protected-link" href="#">House Painting</a></li>
+          <li><a  class="protected-link" href="#">Electrician</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section quicklinks-section">
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links ">
+          <li><a class="protected-link" href="#">About Us</a></li>
+          <li><a  class="protected-link" href="#">Contact Us</a></li>
+          <li><a  class="protected-link" href="#">Our Services</a></li>
+          <li><a  class="protected-link" href="#">Terms & Condition</a></li>
+          <li><a  class="protected-link" href="#">Support</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section newsletter-section">
+        <h3 class="footer-heading">Newsletter</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" class="newsletter-input" />
+          <button type="submit" class="newsletter-button">SignUp</button>
+        </form>
+      </div>
+  
+    </div>
+  
+    <div class="footer-bottom">
+      <p class="footer-copy">© RGBCare, All Right Reserved.</p>
+    </div>
+  </footer>
+  
+<!-- Footer End -->
+
+
+  
+  <!-- External Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+  const swiper = new Swiper(".myNewSwiper", {
+  loop: true,
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
+
+</script>
+
+
+  <!-- Modal and Dropdown Logic -->
+  <script>
+    // Open modal function
+    function openModal() {
+      document.getElementById('signupModal').classList.remove('hidden');
+    }
+
+    // Close modal function
+    function closeModal() {
+      document.getElementById('signupModal').classList.add('hidden');
+    }
+
+    // Attach event listeners to protected links
+    document.querySelectorAll('.protected-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    // Dropdown menu toggle
+   
+    document.getElementById("registerButton").addEventListener("click", function() {
+      var dropdownMenu = document.getElementById("dropdownMenu");
+      dropdownMenu.classList.toggle("hidden");
+    });
+
+    // Close dropdown if clicked outside
+    window.addEventListener("click", function(event) {
+      var dropdownMenu = document.getElementById("dropdownMenu");
+      var button = document.getElementById("registerButton");
+      if (!button.contains(event.target)) {
+        dropdownMenu.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>

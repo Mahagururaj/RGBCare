@@ -14,38 +14,36 @@ from django.views import View
 from django.db import transaction
 from .models import Response, State, workers, users, ServiceCatogarys, Country, City, Feedback, ServiceRequests
 from .forms import stateform
-from django.http import HttpResponse
 
-def home(request):
-    return HttpResponse("Welcome to RGBCare!")
+
 
 class Commenlib:
     def __init__(self):
         self.DEFAULT_REDIRECT_PATH={'ROOT':'/'}
 
 common_lib = Commenlib()
+class HomeView(View):
+    def get(self, request):
+        return render(request, 'home.html')
 
-# Create your views here.
 class Login(View):
     def get(self, request):
         return render(request, 'login.html')
-    def post(self,request):
+
+    def post(self, request):
         username = request.POST['uname']
         password = request.POST['psw']
         user = authenticate(username=username, password=password)
         print(user)
-        # print(user.username)
 
         if user is not None:
             login(request, user)
             if user.is_superuser and user.is_staff:
-                return  HttpResponseRedirect('/admmin_home')
-                # return render(request, 'adminhome.html')
-
+                return HttpResponseRedirect('/admmin_home')
             elif user.is_staff:
                 return HttpResponseRedirect('/workers_home')
             else:
-                return HttpResponseRedirect('/index')
+                return HttpResponseRedirect('/home')
         else:
             return render(request, 'login.html', {'error_msg': "Invalid credentials."})
 

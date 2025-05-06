@@ -1,133 +1,309 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f7f7f7;
-            background-image: url('https://example.com/path/to/your/image.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Register</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-        h1 {
-            color: #4285f4;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        label {
-            color: #555555;
-            font-weight: bold;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #26a69a, #00796b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
 
-        .form-control {
-            border-color: #cccccc;
-        }
+    ::selection {
+      background: #004d40;
+      color: #fff;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
 
-        .form-group label,
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            transition: all 0.3s ease-in-out;
-        }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      will-change: transform;
+      transition: transform 0.2s ease-out;
+    }
+    .shape.one { width: 130px; height: 130px; top: 10%; left: 12%; }
+    .shape.two { width: 200px; height: 200px; top: 75%; left: 80%; }
+    .shape.three { width: 160px; height: 160px; top: 45%; left: 55%; }
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: #4285f4;
-            box-shadow: 0 0 0 0.2rem rgba(66, 133, 244, 0.25);
-        }
+    .login-box {
+      position: relative;
+      z-index: 1;
+      width: 500px;
+      padding: 50px 40px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+      color: #fff;
+      text-align: center;
+    }
 
-        .btn-primary {
-            background-color: #4285f4;
-            border-color: #4285f4;
-        }
+    .login-box h2 {
+      margin-bottom: 32px;
+      font-weight: 600;
+      font-size: 28px;
+    }
 
-        .btn-primary:hover {
-            background-color: #357ae8;
-            border-color: #357ae8;
-        }
-    </style>
-    <title>User Details Form</title>
+    .form-control {
+      width: 100%;
+      height: 50px;
+      background: rgba(255,255,255,0.18);
+      border: none;
+      border-radius: 30px;
+      padding: 0 20px;
+      margin-bottom: 22px;
+      color: #fff;
+      font-size: 15px;
+      transition: background .3s, box-shadow .3s;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .form-control:focus {
+      background: rgba(255,255,255,0.25);
+      box-shadow: 0 0 8px rgba(255,255,255,0.6);
+      outline: none;
+    }
+
+    select.form-control {
+      appearance: none;
+      background-color: rgba(255,255,255,0.18);
+      padding-right: 48px;
+      background-image:
+        linear-gradient(45deg, transparent 50%, white 50%),
+        linear-gradient(135deg, white 50%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+      background-position:
+        calc(100% - 20px) calc(50% - 7px),
+        calc(100% - 15px) calc(50% - 7px),
+        0 0;
+      background-size: 8px 8px, 8px 8px, 100% 100%;
+      background-repeat: no-repeat;
+      text-indent: 0.01px;
+      text-overflow: '';
+      color: #fff;
+    }
+
+    select.form-control option {
+      background-color: #2b978c;
+      color: #fff;
+    }
+
+    textarea.form-control {
+      height: 80px;
+      padding-top: 14px;
+      resize: none;
+    }
+
+    .file-input-wrapper {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .file-input-wrapper input[type=file] {
+      width: 100%;
+      height: 50px;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .file-input-label {
+      display: block;
+      width: 100%;
+      height: 50px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 30px;
+      color: #fff;
+      line-height: 50px;
+      text-align: center;
+      font-size: 15px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s;
+    }
+
+    .file-input-label:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .img-preview {
+      display: none;
+      width: 90px;
+      height: 90px;
+      margin: 12px auto 24px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid transparent;
+      background: linear-gradient(135deg, #00bfa5, #00796b) border-box;
+      padding: 3px;
+      animation: borderMove 4s linear infinite;
+    }
+
+    @keyframes borderMove {
+      0% { border-image-source: linear-gradient(0deg, #00bfa5, #00796b); }
+      100% { border-image-source: linear-gradient(360deg, #00bfa5, #00796b); }
+    }
+
+    .password-container {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .password-container input {
+      padding-right: 50px;
+    }
+
+    .password-container i {
+      position: absolute;
+      right: 18px;
+      top: 35%;
+      transform: translateY(-50%);
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color .3s;
+    }
+
+    .password-container i:hover {
+      color: #00e2c5;
+    }
+
+    .btn-submit{
+      position: relative; display: block; width: 100%; padding: 16px 0;
+      margin: 20px 0 14px; background: transparent; border: 2px solid #fff;
+      border-radius: 30px; color: #fff; font-size: 18px; font-weight: 600;
+      letter-spacing: 1px; overflow: hidden; cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%; background: #00796b;
+      transition: left 0.4s ease-in-out;
+      z-index: -1;
+    }
+    .btn-submit:hover {
+      color: #fff;
+    }
+    .btn-submit:hover::before {
+      left: 0;
+    }
+
+    .form-footer {
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .form-footer a {
+      color: #00d5ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media(max-width:480px){
+      .login-box {
+        width: 90%;
+        padding: 30px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container mt-5">
-        <h1>User Registration Form</h1>
-        {{msg}}
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="firstname">First Name:</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="lastname">Last Name:</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="profile_pic">Profile Picture:</label>
-                <input type="file" class="form-control" id="profile_pic" name="profile_pic" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
 
+  <div class="shape one"></div>
+  <div class="shape two"></div>
+  <div class="shape three"></div>
 
-            <div class="form-group">
-                <label for="contactnumber">Contact Number:</label>
-                <input type="tel" class="form-control" id="contactnumber" name="contactnumber" required>
-            </div>
+  <div class="login-box" id="loginBox">
+    <h2>User Registration</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" name="firstname" class="form-control" placeholder="First Name" required>
+      <input type="text" name="lastname" class="form-control" placeholder="Last Name" required>
 
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
-            </div>
+      <img id="imgPreview" class="img-preview" src="#" />
+      <div class="file-input-wrapper">
+        <label class="file-input-label">Upload Profile Picture</label>
+        <input type="file" name="profile_pic" accept="image/*" onchange="previewImg(event)" required>
+      </div>
 
+      <input type="email" name="email" class="form-control" placeholder="Email" required>
+      <input type="tel" name="contactnumber" class="form-control" placeholder="Contact Number" required>
+      <textarea name="address" class="form-control" placeholder="Address" required></textarea>
 
+      <select name="gender" class="form-control" required>
+        <option value="" disabled selected>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
 
-            <div class="form-group">
-                <label>Gender:</label><br>
-                <select id="gender" class="form-control" name="gender"  id="gender" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="password">Set Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="cpassword">Confirm Password :</label>
-                <input type="password" class="form-control" id="cpassword" name="cpassword" required>
-            </div>
+      <div class="password-container">
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        <i id="togglePwd" class="fas fa-eye"></i>
+      </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <span>Already Have accout ? <a href="{% url 'login' %}">Login</a></span>
-    </div>
+      <div class="password-container">
+        <input type="password" id="cpassword" name="cpassword" class="form-control" placeholder="Confirm Password" required>
+        <i id="toggleCpwd" class="fas fa-eye"></i>
+      </div>
 
-    <!-- Add Bootstrap JS and jQuery (required for Bootstrap JS) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <button type="submit" class="btn-submit">Register</button>
+      <div class="form-footer">
+        Already registered? <a href="{% url 'login' %}">Sign in</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    gsap.from("#loginBox", { opacity: 0, y: -80, duration: 1.2, ease: "power3.out" });
+
+    const shapes = document.querySelectorAll('.shape');
+    document.addEventListener('mousemove', e => {
+      const { clientX:x, clientY:y } = e;
+      shapes.forEach((shape, i) => {
+        const factor = (i+1) * 25;
+        shape.style.transform = `translate(${(x - window.innerWidth/2) / factor}px, ${(y - window.innerHeight/2) / factor}px)`;
+      });
+    });
+
+    function previewImg(e){
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = document.getElementById('imgPreview');
+        img.src = reader.result;
+        img.style.display = 'block';
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    
+  </script>
+
 </body>
 </html>
