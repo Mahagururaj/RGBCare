@@ -81,17 +81,18 @@ WSGI_APPLICATION = 'HomeServices_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rgbcare',  # Your database name
-        'USER': 'rgbcare_user',  # Database user
-        'PASSWORD': 'TyWTxEX9O3GXcetOeSkgnJFs0xDFgl1h',  # Database password
-        'HOST': 'dpg-d0d0ukumcj7s73b2vml0-a',  # Database host
-        'PORT': '5432',  # Default PostgreSQL port
+        'NAME': 'rgbcare',
+        'USER': 'rgbcare_user',
+        'PASSWORD': 'TyWTxEX9O3GXcetOeSkgnJFs0xDFgl1h',
+        'HOST': 'dpg-d0d0ukumcj7s73b2vml0-a.oregon-postgres.render.com',
+        'PORT': '5432',
         'CONN_MAX_AGE': 600,
         'OPTIONS': {
-            'sslmode': 'require',  # Add SSL configuration if necessary
+            'sslmode': 'require',
         },
     }
 }
+
 
 
 # DATABASES = {
