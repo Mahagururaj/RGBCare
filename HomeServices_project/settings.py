@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='your-fallback-insecure-key')
 DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rgbcare.onrender.com']
 
 
 
@@ -77,32 +77,38 @@ WSGI_APPLICATION = 'HomeServices_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# import os
-# import dj_database_url
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3'),  # fallback to SQLite
-#         conn_max_age=600,
-#         ssl_require=False
-#     )
-# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Homeservices1',
-        'USER': 'root',
-        # 'PASSWORD': 'admin',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
-        # 'PORT': '3306',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'rgbcare',  # Your database name
+        'USER': 'rgbcare_user',  # Database user
+        'PASSWORD': 'TyWTxEX9O3GXcetOeSkgnJFs0xDFgl1h',  # Database password
+        'HOST': 'dpg-d0d0ukumcj7s73b2vml0-a',  # Database host
+        'PORT': '5432',  # Default PostgreSQL port
+        'CONN_MAX_AGE': 600,
         'OPTIONS': {
-            "init_command": "SET foreign_key_checks = 0;",
+            'sslmode': 'require',  # Add SSL configuration if necessary
         },
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'Homeservices1',
+#         'USER': 'root',
+#         # 'PASSWORD': 'admin',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
+#         # 'PORT': '3306',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             "init_command": "SET foreign_key_checks = 0;",
+#         },
+#     }
+# }
 
 
 # Password validation
